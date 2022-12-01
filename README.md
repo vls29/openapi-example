@@ -1,1 +1,3 @@
 # openapi-example
+
+Testing out contract first development using the cat API example from https://medium.com/commencis/contract-first-api-development-with-openapi-generator-and-connexion-b21bbf2f9244, upgraded it to openapi v3, used the maven openapi plugin for code generation, and snippets from https://www.baeldung.com/java-openapi-generator-server and https://stackoverflow.com/questions/59918961/openapi-3-0-springboot-controller-use to get only the spring controller interfaces generated.

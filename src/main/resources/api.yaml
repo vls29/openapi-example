@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  title: My cat API
+  version: 1.0.0
+paths:
+  /cats:
+    post:
+      tags:
+        - cat
+      summary: Add a new cat to the store
+      description: Creates a new cat in the store
+      operationId: addCat
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cat'
+      responses:
+        '201':
+          description: Successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+        '400':
+          description: Bad request
+  /cats/{cat_id}:
+    get:
+      tags:
+        - cat
+      summary: Retrieve a single cat
+      description: Retrieve a single cat
+      operationId: getCat
+      parameters:
+        - name: cat_id
+          in: path
+          required: true
+          description: Id of the cat desired to be retrieved
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Succesful retrieval of cat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+        '400':
+          description: Bad request
+        '404':
+          description: Cat not found
+components:
+  schemas:
+    Cat:
+      type: object
+      title: Cat
+      description: A cat
+      required:
+        - name
+        - breed
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Name of the cat
+          example: Garfield
+        breed:
+          type: string
+          description: Breed of the cat
+          enum:
+            - Abyssinian
+            - Aegean
+            - American Bobtail
+    CatsResponse:
+      type: object
+      description: Response object contains all the cats
+      properties:
+        cats:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cat'
+          description: List of cats
